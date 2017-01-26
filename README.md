@@ -1,10 +1,9 @@
 # MAG for approximate pattern matching (MAGA)
 
 ## About
+MAGA (MAG for approximate pattern matching) is algorithm designed for approximage pattern matching. The algorithm is based on idea of partitioning into exact pattern matching. The MAGA is based on previous work MAG (http://www.stringology.org/event/2014/p07.html) which was designed for exact multiple pattern matching. MAGA adopts the algorithm to approximate pattern matching problem.
 
-This is a source code of MAG for approximate pattern matching (MAGA). It was written for research purpose and has a minimal error checking. The code may be not very readable and comments may not be adequate. There is no warranty, your use of this code is at your own risk. MAGA is based on MAG algorithm (http://www.stringology.org/event/2014/p07.html).
-
-There are multiple variants of MAG algorithm, please refer to mentioned article for more details about each of them.
+This is a source code of MAGA that was written for research purpose and has a minimal error checking. The code may be not be very readable and comments may not be adequate. There is no warranty, your use of this code is at your own risk.
 
 ## Requirements
 
