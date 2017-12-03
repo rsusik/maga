@@ -2,11 +2,11 @@
 #define K_DIFF 0
 #endif
 
-#ifndef K_DIFF
+#ifndef Q_GRAM_UTIL_V
 #define Q_GRAM_UTIL_V q_gram_utilities_dna_l_bits
 #endif
 
-#ifndef K_DIFF
+#ifndef Q_GRAM_UTIL_NEW_L
 #define Q_GRAM_UTIL_NEW_L 3
 #endif
 
