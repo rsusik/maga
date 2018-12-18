@@ -164,6 +164,7 @@ inline bool file_exists (const char *filename) {
 inline int clz64(unsigned long *out, uint64_t in) {
 #ifdef UNIX
 	*out = __builtin_ffsll(in) - 1;
+	return (int)*out;
 #else
 	return _BitScanReverse64(out,in);	// if get "undefined" switch compilation mode to x64
 #endif
