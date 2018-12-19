@@ -6,7 +6,6 @@ int main(int argc, char *argv[]) {
 	t_timemes t_run = {0};
 	t_init(t_run);
 
-	/* Reading data from HD */
 	const char *patterns_filename = argv[1], *patt_size_pch = argv[2], *filename = argv[3];
 	unsigned int patt_size = atoi(patt_size_pch), text_size = 0;
 	uchar *text = NULL, *pattern = NULL;
@@ -26,9 +25,6 @@ int main(int argc, char *argv[]) {
 		cf::cf1<cf::cf1_verif_lev>(pattern, patt_size, text, text_size, K_DIFF, NULL);
 		t_stop(t_run);
 	}
-#ifdef PRINT_RESULTS
-	print_matches();
-#endif
 	approx_cf::print_result(t_get_seconds(t_run), 0, indexes.size(), text_size, patt_size, K_DIFF);
 	indexes.clear();
 	free(text);

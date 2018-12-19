@@ -22,10 +22,6 @@
 #define log2cache 70000
 word log2v[log2cache];
 
-
-//#define SEARCH_FUNCTION_NAME mag_dyn
-//#define MAP_CREATEION_FUNCTION CreateMapByHistogramBinPack
-
 using namespace Q_GRAM_UTIL_V; // defines which q-gram creation should be used
 using namespace mag_dyn;
 
@@ -105,8 +101,6 @@ namespace approx_mag_dyn {
 		return patterns_number;
 
 	}
-
-	std::set<word> tmp;
 
 	// verification
 	template <class T> static void approx_mag_dyn_verification( const uchar *text, word d, word mm, int pos, int *vt, void *args ) {

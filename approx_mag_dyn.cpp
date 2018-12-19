@@ -30,16 +30,9 @@ int main(int argc, char *argv[]) {
 	uchar *text = NULL, *patterns_txt = NULL;
 	FILE * file = NULL;
 
-	//printf("pattern_size=%d\n", pattern_size); fflush(stdout);
-/*
-	if(get_super_sigma(q_size) > (size_t)1000000000) {
-		report_critical_error("Too big super_sigma (%lld), RAM issue.\n", get_super_sigma(q_size));
-	}
-*/
 	long part_size  = approx_utils::get_part_size(pattern_size, K_DIFF);
 	int nparts = approx_utils::get_number_of_parts(pattern_size, part_size);
 	if(part_size - q_size < 2) report_critical_error("part_size (%d) - q_size (%d) < 2", part_size, q_size);
-	//approx_mag_dyn::CharStarNBytesKeyEqual::BYTES_TO_COMPARE = part_size - q_size;
 	approx_mag_dyn::plist::BYTES_TO_COMPARE = part_size - q_size;
 
 
@@ -56,31 +49,19 @@ int main(int argc, char *argv[]) {
 
 	t_start(t_pre);
 
-	//long p_number = approx_mag_dyn::approx_mag_dyn_build_indexed_patterns<get_2_gram>(patterns_txt, pattern_txt_size, nparts, part_size, pattern_size);
 	long p_number = build_indexed_patterns_wrapper(patterns_txt, pattern_txt_size, nparts, part_size, pattern_size, q_size);
 
 	t_stop(t_pre);
 	approx_mag_dyn::approx_mag_dyn_verification_args *args = new approx_mag_dyn::approx_mag_dyn_verification_args();
 	args->pattern_size = pattern_size;
 	t_start(t_run);
-	//printf("part_size=%d\n", part_size); fflush(stdout);
+	
 	search_wrapper(U, k, q_size, (const uchar*)text, text_size, part_size, p_number, (void*)(args) );
-	//mag_dyn::mag_dyn<get_2_gram, 4, 2, approx_mag_dyn::approx_mag_dyn_verification<get_2_gram>>((const uchar*)text, text_size, part_size, p_number, (void*)(&args) );
+	
 	t_stop(t_run);
 	long int matches = indexes.size();
 
-	for ( std::set<word>::iterator it = approx_mag_dyn::tmp.begin(); it != approx_mag_dyn::tmp.end(); it++) printf("%llu\n", *it);
-
-#ifdef PRINT_RESULTS
-	print_matches();
 	approx_mag_dyn::print_result(t_get_seconds(t_data_acc), t_get_seconds(t_pre), t_get_seconds(t_run), 0, 0, matches, sigma, get_super_sigma(q_size), text_size, part_size, K_DIFF);
-#else
-	approx_mag_dyn::print_result(t_get_seconds(t_data_acc), t_get_seconds(t_pre), t_get_seconds(t_run), 0, 0, matches, sigma, get_super_sigma(q_size), text_size, part_size, K_DIFF);
-#endif
-
-#ifdef _DEBUG
-	getchar();
-#endif
 
 	free(patterns_txt);
 	free(text);

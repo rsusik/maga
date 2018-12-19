@@ -58,24 +58,8 @@ namespace faoso {
 		// Assume that we search at least 2 chars, so m should be >= 2*k
 		if( m < 2*k ) { printf("Error: m < 2*k (%d < %d)", m, 2*k); exit(EXIT_FAILURE); }
 		return m;
-		/*
-		int max_m = ( MAX_WORD_SIZE / k + 1 - u ) * k - 2;
-		if( m + u > max_m ) {
-			m = max_m;
-		}
-		if( m <= k) { printf("Error: m <= k (%d > %d)", m, k); exit(EXIT_FAILURE); }
-		return m;
-		*/
 	}
 
-	/*
-	Expands to:
-		d = ( d << 1 ) | b[ get_Q_gram( (tt + 0  * K * Q), sigma)];
-		d = ( d << 1 ) | b[ get_Q_gram( (tt + 1  * K * Q), sigma)];
-		d = ( d << 1 ) | b[ get_Q_gram( (tt + 2  * K * Q), sigma)];
-		d = ( d << 1 ) | b[ get_Q_gram( (tt + 3  * K * Q), sigma)];
-		... U times
-	*/
 	template <unsigned int U_i_PARAM, unsigned int U_PARAM, unsigned int K_PARAM>
 	struct faoso_ { 
 		static void get_d(word &d, uchar *tt, word *b) {
@@ -101,7 +85,6 @@ namespace faoso {
 		int		i, j, h, r, *vt, foo = U_PARAM * K_PARAM, m_orginal = m;
 		uchar		* tt;
 		
-		// h = k * ( m / k ) + k * u - 2   =>   h = k * ( u - 1 ) + m
 		m = get_max_m(m, U_PARAM, K_PARAM);	// cutting m
 
 		for( i = 0; i < 256; i++ ) b[ i ] = ~( word )0; 
