@@ -118,14 +118,14 @@ All you need to do is to:
 		docker build -t maga .
 		```
 
-And run the image:
+* Run test with default parameters:
 ```
 docker run maga
 ```
 
-This will execute test with default parameters and output the results.
+*This will execute test with default parameters and output the results.*
 
-Additionally you may provide all the parameters mentioned in section [Testing](#testing) as follows:
+* Additionally you may provide all the parameters mentioned in section [Testing](#testing) as follows:
 ```
 docker run maga -a approx_mag_l3_k1,approx_mag_l2_k1 -c english.100MB -r 10 -m 8,16,32,64 -u 8 -k 1,2 -q 2,3,4,6,8 -s 5
 ```
